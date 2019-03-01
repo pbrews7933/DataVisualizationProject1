@@ -6,6 +6,10 @@
  <!--     <script type="text/javascript">
 	</script>
  -->  
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Custom styling -->
+    <link rel="stylesheet" href="css/style.css">
 	</head>
 
 	<body>
@@ -23,14 +27,14 @@
 		<div id="graphicBody">
 			<h2>Graphics</h2>
 			<div class="tab">
-				<button class="tablinks" onclick="openCity(event, 'spendingToGDP')">Spending to GDP</button>
-				<button class="tablinks" onclick="openCity(event, 'educationHealthMilitary')">Educational, Health Care and Military Spending</button>
-				<button class="tablinks" onclick="openCity(event, 'ppEducationalppGDP')">Per Person Educational Spending</button>
-				<button class="tablinks" onclick="openCity(event, 'pphHealthcareppGDP')">Per Person Health Care Spending</button>
-				<button class="tablinks" onclick="openCity(event, 'growthRatePctHealthcare')">Growth Rate Health Care (%)</button>
-				<button class="tablinks" onclick="openCity(event, 'growthRateFixedHealthCare')">Growth Rate Health Care ($)</button>
-				<button class="tablinks" onclick="openCity(event, 'growthRatePctEducation')">Growth Rate Education (%)</button>
-				<button class="tablinks" onclick="openCity(event, 'growthRateFixedEducation')">Growth Rate Education ($)</button>
+				<button class="tablinks" onclick="openGraph(event, 'spendingToGDP')">Spending to GDP</button>
+				<button class="tablinks" onclick="openGraph(event, 'educationHealthMilitary')">Educational, Health Care and Military Spending</button>
+				<button class="tablinks" onclick="openGraph(event, 'ppEducationalppGDP')">Per Person Educational Spending</button>
+				<button class="tablinks" onclick="openGraph(event, 'pphHealthcareppGDP')">Per Person Health Care Spending</button>
+				<button class="tablinks" onclick="openGraph(event, 'growthRatePctHealthcare')">Growth Rate Health Care (%)</button>
+				<button class="tablinks" onclick="openGraph(event, 'growthRateFixedHealthCare')">Growth Rate Health Care ($)</button>
+				<button class="tablinks" onclick="openGraph(event, 'growthRatePctEducation')">Growth Rate Education (%)</button>
+				<button class="tablinks" onclick="openGraph(event, 'growthRateFixedEducation')">Growth Rate Education ($)</button>
 			</div>
 			<div id="spendingToGDP" class="tabcontent">
 				<h3>Spending to GDP</h3>
@@ -65,5 +69,6 @@
 			<li>Your forecasting, </li>
 			</ul>
 		</div>
+		<script src="js/main.js"></script>
 	</body>
 </html>
