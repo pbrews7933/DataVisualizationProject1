@@ -1,15 +1,16 @@
 <html>
   <head>
     <!--Load the AJAX API-->
- <!--    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
- -->
- <!--     <script type="text/javascript">
-	</script>
- -->  
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- Custom styling -->
     <link rel="stylesheet" href="css/style.css">
+	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+	  google.charts.load('current', {packages: ['corechart']});
+	  google.charts.setOnLoadCallback(startUp);
+	</script>
 	</head>
 
 	<body>
@@ -27,7 +28,7 @@
 		<div id="graphicBody">
 			<h2>Graphics</h2>
 			<div class="tab">
-				<button class="tablinks" onclick="openGraph(event, 'spendingToGDP')">Spending to GDP</button>
+				<button class="tablinks" onclick="openGraph(event, 'spendingToGDP')" id="defaultOpen">Spending to GDP</button>
 				<button class="tablinks" onclick="openGraph(event, 'educationHealthMilitary')">Educational, Health Care and Military Spending</button>
 				<button class="tablinks" onclick="openGraph(event, 'ppEducationalppGDP')">Per Person Educational Spending</button>
 				<button class="tablinks" onclick="openGraph(event, 'pphHealthcareppGDP')">Per Person Health Care Spending</button>
@@ -37,28 +38,52 @@
 				<button class="tablinks" onclick="openGraph(event, 'growthRateFixedEducation')">Growth Rate Education ($)</button>
 			</div>
 			<div id="spendingToGDP" class="tabcontent">
+				<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
 				<h3>Spending to GDP</h3>
+				<div id="spendingToGDPGraph">
+				</div>
 			</div>
 			<div id="educationHealthMilitary" class="tabcontent">
+				<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
 				<h3>Educational, Health Care and Military Spending</h3>
+				<div id="educationHealthMilitaryGraph">
+				</div>
 			</div>
 			<div id="ppEducationalppGDP" class="tabcontent">
+				<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
 				<h3>Per Person Educational Spending</h3>
+				<div id="ppEducationalppGDPGraph">
+				</div>
 			</div>
 			<div id="pphHealthcareppGDP" class="tabcontent">
+				<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
 				<h3>Per Person Health Care Spending</h3>
+				<div id="pphHealthcareppGDPGraph">
+				</div>
 			</div>
 			<div id="growthRatePctHealthcare" class="tabcontent">
+				<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
 				<h3>Growth Rate Health Carte (pct)</h3>
+				<div id="growthRatePctHealthcareGraph">
+				</div>
 			</div>
 			<div id="growthRateFixedHealthcare" class="tabcontent">
+				<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
 				<h3>Growth Rate Health Care (dollars)</h3>
+				<div id="sgrowthRateFixedHealthcareGraph">
+				</div>
 			</div>
 			<div id="growthRatePctEducation" class="tabcontent">
+				<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
 				<h3>Growth Rate Education (pct)</h3>
+				<div id="growthRatePctEducationGraph">
+				</div>
 			</div>
 			<div id="growthRateFixedEducation" class="tabcontent">
+				<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
 				<h3>Growth Rate Education (dollars)</h3>
+				<div id="growthRateFixedEducationGraph">
+				</div>
 			</div>
 		</div>
 		<div id="conclusionText">
@@ -69,6 +94,5 @@
 			<li>Your forecasting, </li>
 			</ul>
 		</div>
-		<script src="js/main.js"></script>
 	</body>
 </html>
