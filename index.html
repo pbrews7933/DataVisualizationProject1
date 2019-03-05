@@ -31,21 +31,19 @@
 				<button class="tablinks" onclick="openGraph(event, 'spendingToGDP')" id="defaultOpen">Spending to GDP</button>
 				<button class="tablinks" onclick="openGraph(event, 'educationHealthMilitary')">Educational, Health Care and Military Spending</button>
 				<button class="tablinks" onclick="openGraph(event, 'ppEducationalppGDP')">Per Person Educational Spending</button>
-				<button class="tablinks" onclick="openGraph(event, 'pphHealthcareppGDP')">Per Person Health Care Spending</button>
+				<button class="tablinks" onclick="openGraph(event, 'ppHealthcareppGDP')">Per Person Health Care Spending</button>
 				<button class="tablinks" onclick="openGraph(event, 'growthRatePctHealthcare')">Growth Rate Health Care (%)</button>
-				<button class="tablinks" onclick="openGraph(event, 'growthRateFixedHealthCare')">Growth Rate Health Care ($)</button>
+				<button class="tablinks" onclick="openGraph(event, 'growthRateFixedHealthcare')">Growth Rate Health Care ($)</button>
 				<button class="tablinks" onclick="openGraph(event, 'growthRatePctEducation')">Growth Rate Education (%)</button>
 				<button class="tablinks" onclick="openGraph(event, 'growthRateFixedEducation')">Growth Rate Education ($)</button>
 			</div>
 			<div id="spendingToGDP" class="tabcontent">
 				<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-				<h3>Spending to GDP</h3>
 				<div id="spendingToGDPGraph">
 				</div>
 			</div>
 			<div id="educationHealthMilitary" class="tabcontent">
 				<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-				<h3>Educational, Health Care and Military Spending</h3>
 				<div id="educationHealthMilitaryGraph">
 				</div>
 			</div>
@@ -55,33 +53,28 @@
 				<div id="ppEducationalppGDPGraph">
 				</div>
 			</div>
-			<div id="pphHealthcareppGDP" class="tabcontent">
+			<div id="ppHealthcareppGDP" class="tabcontent">
 				<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-				<h3>Per Person Health Care Spending</h3>
-				<div id="pphHealthcareppGDPGraph">
+				<div id="ppHealthcareppGDPGraph">
 				</div>
 			</div>
 			<div id="growthRatePctHealthcare" class="tabcontent">
 				<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-				<h3>Growth Rate Health Carte (pct)</h3>
 				<div id="growthRatePctHealthcareGraph">
 				</div>
 			</div>
 			<div id="growthRateFixedHealthcare" class="tabcontent">
 				<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-				<h3>Growth Rate Health Care (dollars)</h3>
-				<div id="sgrowthRateFixedHealthcareGraph">
+				<div id="growthRateFixedHealthcareGraph">
 				</div>
 			</div>
 			<div id="growthRatePctEducation" class="tabcontent">
 				<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-				<h3>Growth Rate Education (pct)</h3>
 				<div id="growthRatePctEducationGraph">
 				</div>
 			</div>
 			<div id="growthRateFixedEducation" class="tabcontent">
 				<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-				<h3>Growth Rate Education (dollars)</h3>
 				<div id="growthRateFixedEducationGraph">
 				</div>
 			</div>
