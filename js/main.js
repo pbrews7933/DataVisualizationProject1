@@ -71,7 +71,8 @@ function drawSheetName(sheetName, query, responseHandler) {
 	var q = new google.visualization.Query(
 //		'https://docs.google.com/spreadsheets/d/e/2PACX-1vRJuo9Jmb4HqKy7-NAcyIlpZ9YCgwocMszM9EppmCABfvcIgeu3TXBq0IE9vig7YKzPPypPtllm-VmV/gviz/tq?sheet=' +
 //		'https://docs.google.com/spreadsheets/d/1Z5w2g3VwnNk5jKYGmwBk0X1fqMlL2BP_9o4VGZUKujk/gviz/tq?sheet=' +
-		'https://docs.google.com/spreadsheets/d/1D3mkzQPbRnz3zmwQnXZAeaocDPghNb4vDxNx35qBMdk/gviz/tq?sheet=' +
+//		'https://docs.google.com/spreadsheets/d/1D3mkzQPbRnz3zmwQnXZAeaocDPghNb4vDxNx35qBMdk/gviz/tq?sheet=' +
+		'https://docs.google.com/spreadsheets/d/15yu3wd5yTRdh_0fpLkLk1iDt077oKr6l_MvNmhRdYAg/gviz/tq?sheet=' +
 					sheetName + '&headers=1&tq=' + queryString);
 	q.send(responseHandler);
 } //drawSheetName
