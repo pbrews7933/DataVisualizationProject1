@@ -1,20 +1,37 @@
 body {font-family: Arial;}
+th, td {
+  padding: 2px;
+  text-align: left;
+}
+table{ float:left; 
+	caption-side:top;
+}
+.referenceTable {
+	padding: 20px;
+}
+#logo {
+	height: 100px;
+	background: url(../images/g20.png)
+}
+
 /* Style the tab */
 .tab {
   overflow: hidden;
   border: 1px solid #ccc;
   background-color: #f1f1f1;
 }
-
+table{ float:left; }
 /* Style the buttons that are used to open the tab content */
 .tab button {
   background-color: inherit;
-  float: left;
+  float: none;
   border: none;
   outline: none;
   cursor: pointer;
   padding: 14px 16px;
   transition: 0.3s;
+  width: 100%;
+  text-align: right;
 }
 
 /* Change background color of buttons on hover */
@@ -53,4 +70,9 @@ body {font-family: Arial;}
 }
 .topright:hover {color: red;}
 
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
 

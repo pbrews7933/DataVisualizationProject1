@@ -1,6 +1,25 @@
 function startUp() {
 //		document.getElementById("defaultOpen").click();
 	}
+function openText(evt, textName) {
+	var i, tabcontent, tablinks;
+
+	// Get all elements with class="tabcontent" and hide them
+	tabcontent = document.getElementsByClassName("tabcontent");
+	for (i = 0; i < tabcontent.length; i++) {
+		tabcontent[i].style.display = "none";
+	}
+
+	// Get all elements with class="tablinks" and remove the class "active"
+	tablinks = document.getElementsByClassName("tablinks");
+	for (i = 0; i < tablinks.length; i++) {
+		tablinks[i].className = tablinks[i].className.replace(" active", "");
+	}
+
+	  // Show the current tab, and add an "active" class to the button that opened the tab
+	document.getElementById(textName).style.display = "block";
+	evt.currentTarget.className += " active";
+}
 function openGraph(evt, graphName) {
 	// Declare all variables
 	var i, tabcontent, tablinks;
@@ -28,17 +47,17 @@ function openGraph(evt, graphName) {
 			break;
 		case 'educationHealthMilitary':
 			drawSheetName('AllG20Data', 
-						  'SELECT A, F, G, H WHERE C = "2015"',
+						  'SELECT A, F, G, H, (F + G + H)/F WHERE C = "2015"',
 						  educationHealthMilitaryResponseHandler);
 			break;
 		case 'ppEducationalppGDP':
 			drawSheetName('AllG20Data', 
-						  'SELECT A,N,(L - N) WHERE C = "2015"',
+						  'SELECT A,N,(L - N), (L - N) / N WHERE C = "2015"',
 						  ppEducationalppGDPResponseHandler);
 			break;
 		case 'ppHealthcareppGDP':
 			drawSheetName('AllG20Data', 
-						  'SELECT A,O,(L - O) WHERE C = "2015"' ,
+						  'SELECT A,O,(L - O), (L - O) / O WHERE C = "2015"' ,
 						  ppHealthcareppGDPResponseHandler);
 			break;
 		case 'growthRatePctHealthcare':
@@ -60,6 +79,16 @@ function openGraph(evt, graphName) {
 			drawSheetName('AllG20Data', 
 						  'SELECT A,C, G',
 						  growthRateFixedEducationResponseHandler);
+			break;
+		case 'growthRatePctMilitarySpending':
+			drawSheetName('AllG20Data', 
+						  'SELECT A,C, F',
+						  growthRatePctMilitarySpendingResponseHandler);
+			break;
+		case 'growthRateFixedMilitarySpending':
+			drawSheetName('AllG20Data', 
+						  'SELECT A,C, F',
+						  growthRateFixedMilitarySpendingResponseHandler);
 			break;
 		default:
 	}
@@ -83,6 +112,7 @@ function spendingToGDPResponseHandler(response) {
 	data.setColumnLabel(1,"Military Spending");
 	data.setColumnLabel(2,"Education");
 	data.setColumnLabel(3,"Health Care");
+	data.setColumnLabel(4,"Other");
 	data.removeColumn(5);
 	var options = {
 				height: 800,
@@ -103,10 +133,11 @@ function spendingToGDPResponseHandler(response) {
 };
 function educationHealthMilitaryResponseHandler(response) {
 	var data = response.getDataTable();
-	data.sort({column:1, desc: false});
+	data.sort({column:4, desc: false});
 	data.setColumnLabel(1,"Military Spending");
 	data.setColumnLabel(2,"Education");
 	data.setColumnLabel(3,"Health Care");
+	data.removeColumn(4);
 
 	var options = {
 				height: 800,
@@ -127,10 +158,11 @@ function educationHealthMilitaryResponseHandler(response) {
 };
 function ppEducationalppGDPResponseHandler(response) {
 	var data = response.getDataTable();
-	data.sort({column:0, desc: false});
+	data.sort({column:3, desc: false});
+	data.addColumn({type:"string", label:"style", id:"3", role:"style"})
 	data.setColumnLabel(1,"Education");
 	data.setColumnLabel(2,"GDP");
-
+	data.removeColumn(3)
 
 	var options = {
 				height: 800,
@@ -151,9 +183,10 @@ function ppEducationalppGDPResponseHandler(response) {
 };
 function ppHealthcareppGDPResponseHandler(response) {
 	var data = response.getDataTable();
-	data.sort({column:0, desc: false});
+	data.sort({column:3, desc: false});
 	data.setColumnLabel(1,"Health Care");
 	data.setColumnLabel(2,"GDP");
+	data.removeColumn(3)
 
 
 	var options = {
@@ -184,10 +217,16 @@ function growthRatePctHealthcareResponseHandler(response) {
 	var cMax = 2;
 	joinedTable.addColumn('number', 'Delta', 'd');
 	var cDelta = joinedTable.getNumberOfColumns() - 1;
-    for (var i =  0 ; i < joinedTable.getNumberOfRows(); i++) {
-		joinedTable.setCell(i, cDelta, (joinedTable.getValue(i, cMax) - joinedTable.getValue(i, cMin))/ joinedTable.getValue(i, cMin));
+	var delta = 0;
+    for (var i =  0 ; i < joinedTable.getNumberOfRows(); i++) {		
+		if (joinedTable.getValue(i, cMax) == 0 || joinedTable.getValue(i, cMin) == 0) {
+			delta = 0;
+		} else {
+			delta = (joinedTable.getValue(i, cMax) - joinedTable.getValue(i, cMin))/ joinedTable.getValue(i, cMin);
+		}
+		joinedTable.setCell(i, cDelta, delta );
 	}
-	joinedTable.sort({column: cDelta});
+	joinedTable.sort({column: cDelta, desc:false});
 	joinedTable.removeColumns(cMin, 2);
 
 
@@ -220,10 +259,16 @@ function growthRateFixedHealthcareResponseHandler(response) {
 	var cMax = 2;
 	joinedTable.addColumn('number', 'Delta', 'd');
 	var cDelta = joinedTable.getNumberOfColumns() - 1;
+	var delta = 0;
     for (var i =  0 ; i < joinedTable.getNumberOfRows(); i++) {
-		joinedTable.setCell(i, cDelta, (joinedTable.getValue(i, cMax) - joinedTable.getValue(i, cMin)));
+		if (joinedTable.getValue(i, cMax) == 0 || joinedTable.getValue(i, cMin) == 0) {
+			delta = 0;
+		} else {
+			delta = joinedTable.getValue(i, cMax) - joinedTable.getValue(i, cMin);
+		}
+		joinedTable.setCell(i, cDelta, delta );
 	}
-	joinedTable.sort({column: cDelta});
+	joinedTable.sort({column: cDelta, desc:false});
 	joinedTable.removeColumns(cMin, 2);
 
 
@@ -256,8 +301,14 @@ function growthRatePctEducationResponseHandler(response) {
 	var cMax = 2;
 	joinedTable.addColumn('number', 'Delta', 'd');
 	var cDelta = joinedTable.getNumberOfColumns() - 1;
+	var delta = 0;
     for (var i =  0 ; i < joinedTable.getNumberOfRows(); i++) {
-		joinedTable.setCell(i, cDelta, (joinedTable.getValue(i, cMax) - joinedTable.getValue(i, cMin))/ joinedTable.getValue(i, cMin));
+		if (joinedTable.getValue(i, cMax) == 0 || joinedTable.getValue(i, cMin) == 0) {
+			delta = 0;
+		} else {
+			delta = (joinedTable.getValue(i, cMax) - joinedTable.getValue(i, cMin))/ joinedTable.getValue(i, cMin);
+		}
+		joinedTable.setCell(i, cDelta, delta );
 	}
 	joinedTable.sort({column: cDelta});
 	joinedTable.removeColumns(cMin, 2);
@@ -293,10 +344,16 @@ function growthRateFixedEducationResponseHandler(response) {
 	var cMax = 2;
 	joinedTable.addColumn('number', 'Delta', 'd');
 	var cDelta = joinedTable.getNumberOfColumns() - 1;
+	var delta = 0;
     for (var i =  0 ; i < joinedTable.getNumberOfRows(); i++) {
-		joinedTable.setCell(i, cDelta, (joinedTable.getValue(i, cMax) - joinedTable.getValue(i, cMin)));
+		if (joinedTable.getValue(i, cMax) == 0 || joinedTable.getValue(i, cMin) == 0) {
+			delta = 0;
+		} else {
+			delta = joinedTable.getValue(i, cMax) - joinedTable.getValue(i, cMin);
+		}
+		joinedTable.setCell(i, cDelta, delta );
 	}
-	joinedTable.sort({column: cDelta});
+	joinedTable.sort({column: cDelta, desc:false});
 	joinedTable.removeColumns(cMin, 2);
 
 
@@ -313,6 +370,91 @@ function growthRateFixedEducationResponseHandler(response) {
 	
 	var chart = new google.visualization.BarChart(document.getElementById(
 				'growthRateFixedEducationGraph'));
+	
+	chart.draw(joinedTable, options);
+		
+	
+};
+function growthRatePctMilitarySpendingResponseHandler(response) {
+	var data = response.getDataTable();
+	var minView = new google.visualization.DataView(data);
+	var minTable = minView.toDataTable(minView.setRows(minView.getFilteredRows([{column: 1, value: "2010"}])));
+	var maxView = new google.visualization.DataView(data);
+	var maxTable = maxView.toDataTable(maxView.setRows(maxView.getFilteredRows([{column: 1, value: "2015"}])));
+	var joinedTable = google.visualization.data.join(minTable, maxTable, 'full', [[0,0]], [2], [2]);
+	var cMin = 1;
+	var cMax = 2;
+	joinedTable.addColumn('number', 'Delta', 'd');
+	var cDelta = joinedTable.getNumberOfColumns() - 1;
+	var delta = 0;
+    for (var i =  0 ; i < joinedTable.getNumberOfRows(); i++) {
+		if (joinedTable.getValue(i, cMax) == 0 || joinedTable.getValue(i, cMin) == 0) {
+			delta = 0;
+		} else {
+			delta = (joinedTable.getValue(i, cMax) - joinedTable.getValue(i, cMin))/ joinedTable.getValue(i, cMin);
+		}
+		joinedTable.setCell(i, cDelta, delta );
+	}
+	joinedTable.sort({column: cDelta, desc:false});
+	joinedTable.removeColumns(cMin, 2);
+
+
+	var options = {
+				height: 800,
+				legend: {position: "none" },
+				bars: 'horizontal',
+				annotations: {alwaysOutside: true},
+				title: 'Percent Growth in Military Spending Spending(2010-2015)',
+				vAxis: {title: 'Country'},
+				hAxis: {title: 'Percent', format: 'percent'},
+				chartArea:{left:400}
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'growthRatePctMilitarySpendingGraph'));
+	
+	chart.draw(joinedTable, options);
+		
+	
+	
+};
+function growthRateFixedMilitarySpendingResponseHandler(response) {
+	var data = response.getDataTable();
+	var minView = new google.visualization.DataView(data);
+	var minTable = minView.toDataTable(minView.setRows(minView.getFilteredRows([{column: 1, value: "2010"}])));
+	var maxView = new google.visualization.DataView(data);
+	var maxTable = maxView.toDataTable(maxView.setRows(maxView.getFilteredRows([{column: 1, value: "2015"}])));
+	var joinedTable = google.visualization.data.join(minTable, maxTable, 'full', [[0,0]], [2], [2]);
+	var cMin = 1;
+	var cMax = 2;
+	joinedTable.addColumn('number', 'Delta', 'd');
+	var cDelta = joinedTable.getNumberOfColumns() - 1;
+	var delta = 0;
+    for (var i =  0 ; i < joinedTable.getNumberOfRows(); i++) {
+		if (joinedTable.getValue(i, cMax) == 0 || joinedTable.getValue(i, cMin) == 0) {
+			delta = 0;
+		} else {
+			delta = joinedTable.getValue(i, cMax) - joinedTable.getValue(i, cMin);
+		}
+		joinedTable.setCell(i, cDelta, delta );
+	}
+	joinedTable.sort({column: cDelta, desc:false});
+	joinedTable.removeColumns(cMin, 2);
+
+
+	var options = {
+				height: 800,
+				legend: {position: "none" },
+				bars: 'horizontal',
+				annotations: {alwaysOutside: true},
+				title: 'Growth in Military Spending Spending in Billions(2010-2015)',
+				vAxis: {title: 'Country'},
+				hAxis: {title: 'Billions'},
+				chartArea:{left:400}
+	};
+	
+	var chart = new google.visualization.BarChart(document.getElementById(
+				'growthRateFixedMilitarySpendingGraph'));
 	
 	chart.draw(joinedTable, options);
 		

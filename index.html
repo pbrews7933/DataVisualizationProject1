@@ -3,6 +3,7 @@
     <!--Load the AJAX API-->
     <!-- Bootstrap -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <!-- Custom styling -->
     <link rel="stylesheet" href="css/style.css">
 	<script type="text/javascript" src="js/main.js"></script>
@@ -12,80 +13,216 @@
 	  google.charts.setOnLoadCallback(startUp);
 	</script>
 	</head>
-
 	<body>
-		<h1>DATS 6401 - Individual Project - Brewster, Paul</h1>
-		<div id="introText">
-			<h2>Introduction</h2>
-			<p>The educational, healthcare, and military spending of at least the top 10 nations:</p>
-			<ul>
-			<li>Choose at least five years of data no older than 10 years</li>
-			<li>You may use the G-20 for this project.</li>
-			<li>Your data source 
-			<li>Your learning process</li>
-			</ul>
+		<div id="leftHeader">
+			<h1>DATS 6401 - Individual Project - Brewster, Paul</h1>
+		</div>
+		<div id="logo">
 		</div>
 		<div id="graphicBody">
-			<h2>Graphics</h2>
-			<div class="tab">
-				<button class="tablinks" onclick="openGraph(event, 'spendingToGDP')" id="defaultOpen">Spending to GDP</button>
-				<button class="tablinks" onclick="openGraph(event, 'educationHealthMilitary')">Educational, Health Care and Military Spending</button>
-				<button class="tablinks" onclick="openGraph(event, 'ppEducationalppGDP')">Per Person Educational Spending</button>
-				<button class="tablinks" onclick="openGraph(event, 'ppHealthcareppGDP')">Per Person Health Care Spending</button>
-				<button class="tablinks" onclick="openGraph(event, 'growthRatePctHealthcare')">Growth Rate Health Care (%)</button>
-				<button class="tablinks" onclick="openGraph(event, 'growthRateFixedHealthcare')">Growth Rate Health Care ($)</button>
-				<button class="tablinks" onclick="openGraph(event, 'growthRatePctEducation')">Growth Rate Education (%)</button>
-				<button class="tablinks" onclick="openGraph(event, 'growthRateFixedEducation')">Growth Rate Education ($)</button>
+			<div class="w3-sidebar w3-bar-block w3-light-grey w3-card tab" style="width:15%">
+				<h3 class="w3-bar-item">G-20 Education, health Care and Military Spending</h3>
+				<button class="w3-bar-item w3-button tablinks" onclick="openText(event, 'introText')" id="defaultOpen">Introduction</button>
+				<button class="w3-bar-item w3-button tablinks" onclick="openText(event, 'learningProcessText')">Learning Process</button>
+				<button class="w3-bar-item w3-button tablinks" onclick="openGraph(event, 'spendingToGDP')" >Spending to GDP</button>
+				<button class="w3-bar-item w3-button tablinks" onclick="openGraph(event, 'educationHealthMilitary')">Educational, Health Care and Military Spending</button>
+				<button class="w3-bar-item w3-button tablinks" onclick="openGraph(event, 'ppEducationalppGDP')">Per Person Educational Spending</button>
+				<button class="w3-bar-item w3-button tablinks" onclick="openGraph(event, 'ppHealthcareppGDP')">Per Person Health Care Spending</button>
+				<button class="w3-bar-item w3-button tablinks" onclick="openGraph(event, 'growthRatePctHealthcare')">Growth Rate Health Care (%)</button>
+				<button class="w3-bar-item w3-button tablinks" onclick="openGraph(event, 'growthRateFixedHealthcare')">Growth Rate Health Care ($)</button>
+				<button class="w3-bar-item w3-button tablinks" onclick="openGraph(event, 'growthRatePctEducation')">Growth Rate Education (%)</button>
+				<button class="w3-bar-item w3-button tablinks" onclick="openGraph(event, 'growthRateFixedEducation')">Growth Rate Education ($)</button>
+				<button class="w3-bar-item w3-button tablinks" onclick="openGraph(event, 'growthRatePctMilitarySpending')">Growth Rate Military Spending (%)</button>
+				<button class="w3-bar-item w3-button tablinks" onclick="openGraph(event, 'growthRateFixedMilitarySpending')">Growth Rate Military Spending ($)</button>			
+				<button class="w3-bar-item w3-button tablinks" onclick="openText(event, 'conclusionText')">Conclusion</button>
+				<button class="w3-bar-item w3-button tablinks" onclick="openText(event, 'referenceText')" id="defaultOpen">References</button>
 			</div>
-			<div id="spendingToGDP" class="tabcontent">
-				<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-				<div id="spendingToGDPGraph">
+			<div id="rightSide" style="margin-left:15%">
+				<div id="introText" class="tabcontent">
+					<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+					<h2>Introduction</h2>
+					<p>Government spending on education, health care and national defense are major components of individual and national well-being.  They reflect decisions taken at the 
+					highest level by the people, their representatives and their leaders.  The magnitude of these expenditures often reflect implicit societal values and concerns.  The relative values may indicate the importance the society places upon individual well-being, advancement and security.  Several comparative measure exist to attempt to assess the choices made.  An effective measure that may be of use to understand the choices made by an individual society is a country-by-country comparison.</p>
+					<p>Country-by-country mathematical analysis is relatively recent phenomenon only made possible by the availability of national statistics collected on a worldwide basis by the international organizations that have been created in the latter half of the 20th century.  These include the World Bank, the World Health Organization and groups affiliated with the United Nations.  This analysis would not have been possible without the voluntary participation of organizations within the countries of the world and the relatively recent publication of these facts on the world-wide web.</p>
+					<p>The availability of spending data and supporting metrics supported by commonly accepted measures for economic size such as Gross Domestic Product(GDP) and regularly collected census data have allowed analysts unprecedented access to a factual basis for making cross-societal analysis of these factors. It has however revealed issues that make it difficult to draw facile conclusions.  Spending data are by no means as finitely determinable as GDP and population.  A few key differences may be called out.
+					</p>
+					<ul>
+					<li>Data is collected by outside organizations with differing reporting rules</li>
+					<li>Not all countries participate in the collection mechanisms for spending data.</li>
+					<li>Country by country data does not exist for all years within a range of analysis.</li>
+					<li>Nature of the data reported tend to reflect differing governmental supporting structures (e.g., national health services vs. private systems)</li>
+					</ul>
+					<p>To perform this study, the following parameters have been established:</p>
+					<ul>
+					<li>The years 2010-2015 have been selected.  This choice was made to reflect the most commonly available data for the countries in question.  </li>
+					<li>The countries that make up the G-20 have been selected. They provide a sample of the economically developed nations of the world. A list 
+					of the countries that make up the sample is included in the references section of the web site.</li>
+					<li>The data selected has been singled sourced for the World Bank.  This was done to minimize the expected differences among data collection practices. The specific site are 
+					identified in the reference section of this web site with links to the pages in question.</li>
+					</ul>
 				</div>
-			</div>
-			<div id="educationHealthMilitary" class="tabcontent">
-				<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-				<div id="educationHealthMilitaryGraph">
+				<div id="learningProcessText" class="tabcontent">
+					<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+					<h3>Learning Process</h3>
+					<h5>Step 1: Identified the data source</h5>
+					<p>Used Google searches to identify and review the available sources on the internet.  See the reference section for those used.</p>
+					<h5>Step 2: Downloaded the data</h5>
+					<p>Downloaded the .csv copies of the identified sources</p>
+					<h5>Step 3: Cleaned individual datasets</h5>
+					<p>Used the capabilities of Excel Power BI to clean the individual datasets</p>
+					<h5>Step 4: Filled in missing data by extrapolation for Education Data</h5>
+					<p>Wrote a Visual Basic for Applications(VBA) in Excel to fill in missing data by straight-line extrapolation</p>
+					<h5>Step 5: Unpivoted the tables to create individual rows for each country and year</h5>
+					<p>Used Excel Power BI to perform the task.</p>
+					<h5>Step 6: Combined the table to create single dataset with individual rows for each country and year</h5>
+					<p>Used Excel Power BI to create AllData table</p>
+					<h5>Step 7: Added calculated columns for per Person and per GDP</h5>
+					<p>Calculations included in the Excel Power BI script.  Created data table with columns as shown in the reference section </p>
+					<h5>Step 8: Published to Google Sheets</h5>
+					<p>Copied the Excel spreadsheet directly to Google Site</p>
+					<h5>Step 9: Built the individual charts and web site</h5>
+					<p>Used the model demonstrated in class for military spending</p>
+					<h5>Step 10: Performed the analysis</h5>
+					<p>Review the graphics and identified items of interest in the data</p>
+					<h5>Step 11: Wrote the supporting text</h5>
+					<p>Developed the text and tables to support the effort</p>
+					<h5>Step 12: Filmed the presentation</h5>
+					<p>Used the package to create a final product</p>
+					<h5>Step 13: Packaged for submission</h5>
+					<p>Followed the instructions</p>
 				</div>
-			</div>
-			<div id="ppEducationalppGDP" class="tabcontent">
-				<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-				<h3>Per Person Educational Spending</h3>
-				<div id="ppEducationalppGDPGraph">
+				<div id="spendingToGDP" class="tabcontent" >
+					<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+					<div id="spendingToGDPGraph">
+					</div>
 				</div>
-			</div>
-			<div id="ppHealthcareppGDP" class="tabcontent">
-				<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-				<div id="ppHealthcareppGDPGraph">
+				<div id="educationHealthMilitary" class="tabcontent">
+					<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+					<div id="educationHealthMilitaryGraph">
+					</div>
 				</div>
-			</div>
-			<div id="growthRatePctHealthcare" class="tabcontent">
-				<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-				<div id="growthRatePctHealthcareGraph">
+				<div id="ppEducationalppGDP" class="tabcontent">
+					<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+					<div id="ppEducationalppGDPGraph">
+					</div>
 				</div>
-			</div>
-			<div id="growthRateFixedHealthcare" class="tabcontent">
-				<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-				<div id="growthRateFixedHealthcareGraph">
+				<div id="ppHealthcareppGDP" class="tabcontent">
+					<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+					<div id="ppHealthcareppGDPGraph">
+					</div>
 				</div>
-			</div>
-			<div id="growthRatePctEducation" class="tabcontent">
-				<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-				<div id="growthRatePctEducationGraph">
+				<div id="growthRatePctHealthcare" class="tabcontent">
+					<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+					<div id="growthRatePctHealthcareGraph">
+					</div>
 				</div>
-			</div>
-			<div id="growthRateFixedEducation" class="tabcontent">
-				<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-				<div id="growthRateFixedEducationGraph">
+				<div id="growthRateFixedHealthcare" class="tabcontent">
+					<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+					<div id="growthRateFixedHealthcareGraph">
+					</div>
+				</div>
+				<div id="growthRatePctEducation" class="tabcontent">
+					<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+					<div id="growthRatePctEducationGraph">
+					</div>
+				</div>
+				<div id="growthRateFixedEducation" class="tabcontent">
+					<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+					<div id="growthRateFixedEducationGraph">
+					</div>
+				</div>
+				<div id="growthRatePctMilitarySpending" class="tabcontent">
+					<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+					<div id="growthRatePctMilitarySpendingGraph">
+					</div>
+				</div>
+				<div id="growthRateFixedMilitarySpending" class="tabcontent">
+					<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+					<div id="growthRateFixedMilitarySpendingGraph">
+					</div>
+				</div>
+				<div id="conclusionText" class="tabcontent">
+					<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+					<h2>Conclusion</h2>
+					<h4>Analyses</h4>
+					<p>The fundamental conclusion of this study is the difficulty of drawing conclusions based on a comparison of education, health care and military spending across a range of countries.
+					The lack of international terms of reference make this exceedingly problematic. As series of issues arise.  The nature of the health Care expenditures reported vary from country to country despite attempts on the part of international bodies to normalize the data.  This is especially true when trying to compare national health systems with privatized medicined.  It is even difficult to work within national health systems when the range and terms of coverage differ.
+					Educational spending presents an even more daunting challenge when national reporting is spotty and government approaches to funding varies even more widely. Military spending seems to be more predictable given the work of key non-governmental organizations to develop a solid set of data.</p>
+					<p>Within these limitations, one can still draw conclusions and draw some inferences from year-to-year increases and decreases in spending in the individual.
+					areas.  The graphs reflecting growth rates in absolute and percentage terms for the individual metrics are perhaps the most fruitful areas for analysis.  </p>
+					<h4>Interesting and useful relationships and forecasts</h4>
+					<p>Military spending provided the most interesting terms for analysis.</p>
+					<ul><li>The growth of Saudi Arabia's military spending is clearly of interest.  It would be interesting to extend the time period to see if this continues. It would also
+					 be on interest to assess the impact of regional spending beyond the countries of the G-20.</li>
+					<li>The US and China seem to be on opposite trajectories one down and the other up in percentage terms.  It would be interesting to extend the time period into 
+					 the present administration to see if the trend continues.</li>
+					 </ul>
+					<p>Health Care clearly was dominated by US expenditures</p>
+					<ul><li>The size of the US health care expenditure and the growth rate dominates all other data.  It's difficult to see if the trend continues outside the time period
+					with the impact of the Affordable Cara Act.</li>
+					<li>It was difficult to see the impact of the aging population on the health care costs of the developed world but one would expect to see an increase in the per persons costs.</li></ul>
+					<p>Educational spending data was so spotty that it was difficult to drwa conclusion of see patterns.
+					</p>
+				</div>
+				<div id="referenceText" class="tabcontent">
+					<span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+					<h3>Reference Material</h3>
+					<table>
+					<caption><h3>Countries</h3></caption>
+					<tr><th>G-20 Members</th><th>Country Code</th></tr>
+					<tr><td>Argentina</td><td>ARG</td></tr>
+					<tr><td>Canada</td><td>CAN</td></tr>
+					<tr><td>China</td><td>CHN</td></tr>
+					<tr><td>France</td><td>FRA</td></tr>
+					<tr><td>Germany</td><td>DEU</td></tr>
+					<tr><td>India</td><td>IND</td></tr>
+					<tr><td>Indonesia</td><td>IDN</td></tr>
+					<tr><td>Italy</td><td>ITA</td></tr>
+					<tr><td>Japan</td><td>JPN</td></tr>
+					<tr><td>Mexico</td><td>MEX</td></tr>
+					<tr><td>Republic of Korea</td><td>KOR</td></tr>
+					<tr><td>Russia</td><td>RUS</td></tr>
+					<tr><td>Saudi Arabia</td><td>SAU</td></tr>
+					<tr><td>South Africa</td><td>ZAF</td></tr>
+					<tr><td>Turkey</td><td>TUR</td></tr>
+					<tr><td>United Kingdom</td><td>GBR</td></tr>
+					<tr><td>United States</td><td>USA</td></tr>
+					</table>
+
+					<table>
+					<caption><h3>Data Sources</h3></caption>
+					<tr><th>Source</th><tr>
+					<tr><td><a href="https://data.worldbank.org/indicator/NY.GDP.MKTP.CD" target="_blank" >GDP Source</a></td></tr>
+					<tr><td><a href="https://data.worldbank.org/indicator/SP.POP.TOTL" target="_blank">Population Source</a></td></tr>
+					<tr><td><a href="https://data.worldbank.org/indicator/SE.XPD.TOTL.GD.ZS?view=chart" target="_blank">Education Sending</a></td></tr>
+					<tr><td><a href="https://data.worldbank.org/indicator/SH.XPD.CHEX.PC.CD?end=2015&start=2010"target="_blank">Health Care Spending</a></td></>
+					<tr><td><a href="https://data.worldbank.org/indicator/MS.MIL.XPND.CD" target="_blank"> Military Spending</a></td></tr>
+					</table>
+					<table>					
+					<caption><h3>Data Columns</h3></caption>
+					<tr><th>Column Mapping</th><th>Letter</th></tr>
+					<tr><td>Country Name</td><td>A</td></tr>
+					<tr><td>Country Code</td><td>B</td></tr>
+					<tr><td>Year</td><td>C</td></tr>
+					<tr><td>Population</td><td>D</td></tr>
+					<tr><td>GDP</td><td>E</td></tr>
+					<tr><td>MilitarySpending</td><td>F</td></tr>
+					<tr><td>Education</td><td>G</td></tr>
+					<tr><td>Healthcare</td><td>H</td></tr>
+					<tr><td>HealthcarePerGDP</td><td>I</td></tr>
+					<tr><td>EducationPerGDP</td><td>J</td></tr>
+					<tr><td>MilitarySpendingPerGDP</td><td>K</td></tr>
+					<tr><td>GDPPerPerson</td><td>L</td></tr>
+					<tr><td>MilitarySpendingPerPerson</td><td>M</td></tr>
+					<tr><td>EducationPerPerson</td><td>N</td></tr>
+					<tr><td>HealthcarePerPerson</td><td>O</td?</tr>
+					</table>
 				</div>
 			</div>
 		</div>
-		<div id="conclusionText">
-			<h2>Conclusion</h2>
-			<ul>
-			<li>Your analyses</li>
-			<li>Identify any interesting and useful relationships and trends</li>
-			<li>Your forecasting, </li>
-			</ul>
-		</div>
+		<script>
+		// Get the element with id="defaultOpen" and click on it
+		document.getElementById("defaultOpen").click();
+		</script>
 	</body>
 </html>
