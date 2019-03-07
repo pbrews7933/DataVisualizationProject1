@@ -1,4 +1,13 @@
 body {font-family: Arial;}
+#logo {
+    position: relative;
+}
+#logo img {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
 th, td {
   padding: 2px;
   text-align: left;
@@ -8,10 +17,6 @@ table{ float:left;
 }
 .referenceTable {
 	padding: 20px;
-}
-#logo {
-	height: 100px;
-	background: url(../images/g20.png)
 }
 
 /* Style the tab */
@@ -28,7 +33,7 @@ table{ float:left; }
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 14px 16px;
+  padding: 8px 10px;
   transition: 0.3s;
   width: 100%;
   text-align: right;
